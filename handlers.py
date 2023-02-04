@@ -13,6 +13,7 @@ current = 0
 
 @dp.message_handler(commands=['start', 'старт'])
 async def mes_start(message: types.Message):
+    
     name = message.from_user.first_name
     await message.answer(f'{name}, привет! Сегодня сыграем с тобой в конфеты! Для начала игры введи команду /new_game. '
                          f'Для настройки конфет введи команду /set и укажи количество конфет\n'
