@@ -1,5 +1,5 @@
 import random
-
+import csv
 from aiogram import types
 from loader import dp
 
@@ -13,7 +13,12 @@ current = 0
 
 @dp.message_handler(commands=['start', 'старт'])
 async def mes_start(message: types.Message):
-    
+    user_id = message.from_user.id
+    user_login = message.from_user.username
+    user_time = message.date.strftime("%Y-%m-%d %H:%M:%S")
+    with open("GBVersusBot\log.csv", "a", newline='') as file:
+        writer = csv.writer(file)
+        writer.writerow([user_id, user_login, user_time])    
     name = message.from_user.first_name
     await message.answer(f'{name}, привет! Сегодня сыграем с тобой в конфеты! Для начала игры введи команду /new_game. '
                          f'Для настройки конфет введи команду /set и укажи количество конфет\n'
